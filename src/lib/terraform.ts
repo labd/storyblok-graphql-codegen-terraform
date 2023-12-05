@@ -6,7 +6,6 @@ const isResource = (block: Block): block is Resource => {
 
 const blockString = (block: Block): string => {
   if (isResource(block)) {
-    console.log(`${block.type}.${block.name}`)
     return `${block.type}.${block.name}`
   }
   return block.blockType
