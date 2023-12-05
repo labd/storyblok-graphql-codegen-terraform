@@ -1,4 +1,4 @@
-import { gql } from 'graphql-tag'
+import gql from 'graphql-tag'
 import { describe, expect, it } from 'vitest'
 import { isObjectTypeDefinitionNode } from '../src/lib/graphql'
 import { assetResolvers } from '../src/lib/resolvers/assetResolvers'
