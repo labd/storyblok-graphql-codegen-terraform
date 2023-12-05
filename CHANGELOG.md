@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.12.0
+
+### Minor Changes
+
+- d317a14: Add sort_resources option to sort terraform resource
+
 ## 0.11.1
 
 ### Patch Changes
