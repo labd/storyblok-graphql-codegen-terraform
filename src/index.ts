@@ -8,6 +8,7 @@ import { GraphQLSchema, visit } from 'graphql'
 import { extname } from 'path'
 import { Resource, TerraformGenerator } from 'terraform-generator'
 import { PluginConfig } from './lib/config'
+import { tfWithSortedBlocks } from './lib/terraform'
 import { isValue } from './lib/value'
 import { createObjectTypeVisitor } from './lib/visitor'
 
@@ -48,6 +49,10 @@ export const plugin: PluginFunction<PluginConfig> = (
   })
 
   // Return the terraform file string
+  if (config.sort_resources) {
+    return tfWithSortedBlocks(tfg).generate().tf
+  }
+
   return tfg.generate().tf
 }
 

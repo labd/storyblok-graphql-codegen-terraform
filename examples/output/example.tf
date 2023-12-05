@@ -11,11 +11,12 @@ resource "storyblok_component" "article" {
       type         = "text"
     }
     content = {
-      position     = 1
-      translatable = true
-      display_name = "Content"
-      required     = false
-      type         = "markdown"
+      position      = 1
+      translatable  = true
+      display_name  = "Content"
+      required      = false
+      type          = "markdown"
+      rich_markdown = true
     }
     date = {
       position     = 2
@@ -40,7 +41,7 @@ resource "storyblok_component" "banner_block" {
       required     = true
       type         = "asset"
       filetypes = [
-        "image"
+        "images"
       ]
     }
     link = {
@@ -66,11 +67,12 @@ resource "storyblok_component" "markdown_block" {
   is_nestable = true
   schema = {
     content = {
-      position     = 0
-      translatable = true
-      display_name = "Content"
-      required     = false
-      type         = "markdown"
+      position      = 0
+      translatable  = true
+      display_name  = "Content"
+      required      = false
+      type          = "markdown"
+      rich_markdown = true
     }
   }
 }

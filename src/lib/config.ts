@@ -8,4 +8,5 @@ export type PluginConfig = {
   ct_client_secret?: string
   ct_project_key?: string
   ct_locale?: string
+  sort_resources?: boolean
 }
