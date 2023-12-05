@@ -14,6 +14,8 @@ A basic example:
 
 ```yml
 overwrite: true
+config:
+  sort: false
 schema:
   - storyblok-graphql-codegen-terraform
   - ./schemas/example.graphql
@@ -26,7 +28,12 @@ generates:
       - storyblok-graphql-codegen-terraform
     config:
       space_id: 123
+      sort_resources: true
 ```
+
+## Configuration options
+- `sort_resources` can be used to sort the resources in the terraform output. This can be used to avoid random sorting which can cause differences in your git changes each time you run the codegenerator.<br>
+It is also adviced to set the global `sort` option to `false` since that will also sort the field definitions, which impacts the Storyblok UI itself.
 
 # Your Graphql file
 

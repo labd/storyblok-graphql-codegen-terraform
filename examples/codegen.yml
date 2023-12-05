@@ -1,6 +1,8 @@
 overwrite: true
+config:
+  sort: false
 schema:
-  - ./storyblok-base.graphql # node_modules/storyblok-graphql-codegen-terraform/storyblok-base.graphql
+  - ./storyblok-base.graphql # node_modules/@labdigital/storyblok-graphql-codegen-terraform/storyblok-base.graphql
   - ./examples/example.graphql
 hooks:
   afterAllFileWrite:
@@ -11,3 +13,4 @@ generates:
       - ./dist/index.js # storyblok-graphql-codegen-terraform
     config:
       space_id: 123
+      sort_resources: true
