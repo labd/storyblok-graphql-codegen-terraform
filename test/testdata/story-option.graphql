@@ -1,6 +1,6 @@
 type Story @storyblok(type: contentType) {
   story: StoryA! @storyblokField
-  stories: [StoryA!] @storyblokField
+  stories: [StoryA!] @storyblokField(min: 2, max: 4)
   union: StoryUnion @storyblokField
   unions: [StoryUnion!] @storyblokField
 }

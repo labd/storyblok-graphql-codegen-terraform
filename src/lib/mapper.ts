@@ -248,6 +248,14 @@ const toArrayComponentField = (
         use_uuid: true,
         folder_slug: findStoryblokFieldValue<StringValueNode>(field, 'folder')
           ?.value,
+        minimum: ifValue(
+          findStoryblokFieldValue<IntValueNode>(field, 'min')?.value,
+          Number
+        ),
+        maximum: ifValue(
+          findStoryblokFieldValue<IntValueNode>(field, 'max')?.value,
+          Number
+        ),
       }
     }
 
