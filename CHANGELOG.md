@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.12.1
+
+### Patch Changes
+
+- 0b0010f: add minimum/maximum to story option
+
 ## 0.12.0
 
 ### Minor Changes
