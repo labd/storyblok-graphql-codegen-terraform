@@ -77,7 +77,7 @@ const storyOptionsResolver =
   (prop: string) => (parent: any, _args?: any, context?: { rels?: Rel[] }) =>
     parent[prop]?.[0].content
       ? parent[prop].map((f: { content: object }) => f.content)
-      : parent[prop].map(
+      : parent[prop]?.map(
           (uuid: string) =>
             context?.rels
               ?.filter((r) => r.uuid === uuid)
