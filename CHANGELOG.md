@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.12.3
+
+### Patch Changes
+
+- 045a3fd: check for empty story options
+
 ## 0.12.2
 
 ### Patch Changes
