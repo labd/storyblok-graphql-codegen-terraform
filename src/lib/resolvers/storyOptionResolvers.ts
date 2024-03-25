@@ -75,7 +75,7 @@ const storyOptionResolver =
 
 const storyOptionsResolver =
   (prop: string) => (parent: any, _args?: any, context?: { rels?: Rel[] }) =>
-    parent[prop].length === 0
+    !parent[prop] || parent[prop].length === 0
       ? []
       : parent[prop]?.[0]?.content
       ? parent[prop].map((f: { content: object }) => f.content)
