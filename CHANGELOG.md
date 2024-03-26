@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.12.4
+
+### Patch Changes
+
+- acb0ca9: fix resolving undefined property
+
 ## 0.12.3
 
 ### Patch Changes
