@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.13.1
+
+### Patch Changes
+
+- 60998bf: fix use category key resolver chooser bug
+
 ## 0.13.0
 
 ### Minor Changes
