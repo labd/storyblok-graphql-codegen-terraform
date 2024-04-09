@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.13.0
+
+### Minor Changes
+
+- aa6920e: add enum resolvers and category key resolvers
+
 ## 0.12.4
 
 ### Patch Changes
