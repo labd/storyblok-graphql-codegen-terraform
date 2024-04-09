@@ -76,17 +76,19 @@ const storyOptionResolver =
 const storyOptionsResolver =
   (prop: string) => (parent: any, _args?: any, context?: { rels?: Rel[] }) => {
     const value = parent[prop]
-    if (!value) return []
 
-    // TODO: Rewrite this to be more readable
-    return value.length === 0
-      ? []
-      : value[0]?.content
-      ? value.map((f: { content: object }) => f.content)
-      : value.map(
-          (uuid: string) =>
-            context?.rels
-              ?.filter((r) => r.uuid === uuid)
-              .map((r) => ({ ...r.content, id: r.content._uid }))[0]
-        )
+    if (!value?.length) {
+      return []
+    }
+
+    if (value[0]?.content) {
+      return value.map((f: { content: object }) => f.content)
+    }
+
+    return value.map(
+      (uuid: string) =>
+        context?.rels
+          ?.filter((r) => r.uuid === uuid)
+          .map((r) => ({ ...r.content, id: r.content._uid }))[0]
+    )
   }

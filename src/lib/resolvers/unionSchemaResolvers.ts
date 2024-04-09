@@ -19,7 +19,7 @@ type Meta = {
  * ```ts
  * {
  *  InformationPage: {
- *    blocks: enumArraySchemaResolver('blocks', definitions)
+ *    blocks: unionArraySchemaResolver('blocks', definitions)
  *  },
  * ...etc.
  * }

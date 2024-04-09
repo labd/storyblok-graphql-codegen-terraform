@@ -3,6 +3,7 @@ import { DocumentNode } from 'graphql'
 import { isObjectTypeDefinitionNode } from './lib/graphql'
 import { assetResolvers } from './lib/resolvers/assetResolvers'
 import { ctCategoryIdResolvers } from './lib/resolvers/ctCategoryIdResolvers'
+import { ctCategoryKeyResolvers } from './lib/resolvers/ctCategoryKeyResolvers'
 import { ctTypeIdResolvers } from './lib/resolvers/ctTypeIdResolvers'
 import { idResolvers } from './lib/resolvers/idResolvers'
 import { linkResolvers } from './lib/resolvers/linkResolvers'
@@ -15,15 +16,18 @@ import {
   unionArrayFieldResolvers,
   unionResolvers,
 } from './lib/resolvers/unionSchemaResolvers'
+import { enumResolvers } from './lib/resolvers/enumResolvers'
 
 type Options = {
   slugResolver?: (fullSlug: string, context?: object) => string
+  useCategoryKey?: boolean
 }
 
 export const storyblokResolvers = (
   documentNode: DocumentNode,
-  { slugResolver }: Options = {
+  { slugResolver, useCategoryKey }: Options = {
     slugResolver: (fullSlug: string) => fullSlug,
+    useCategoryKey: false,
   }
 ): any => {
   const definitions = documentNode.definitions.filter(
@@ -39,9 +43,12 @@ export const storyblokResolvers = (
     linkResolvers(definitions, slugResolver),
     assetResolvers(definitions),
     seoResolvers(definitions),
-    ctTypeIdResolvers(definitions),
+    useCategoryKey
+      ? ctCategoryKeyResolvers(definitions)
+      : ctTypeIdResolvers(definitions),
     ctCategoryIdResolvers(definitions),
     tableResolvers(definitions),
+    enumResolvers(documentNode.definitions),
   ])
 }
 
