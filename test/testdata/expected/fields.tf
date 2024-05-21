@@ -141,8 +141,8 @@ resource "storyblok_component" "base" {
           value = "b"
         }
       ]
-      minimum = 1
-      maximum = 2
+      min_options = 1
+      max_options = 2
     }
     blok = {
       position     = 17

@@ -120,6 +120,8 @@ export type OptionsComponentField = ComponentFieldBase & {
   folder_slug?: string
   minimum?: number
   maximum?: number
+  min_options?: number
+  max_options?: number
 }
 
 export type OptionComponentField = ComponentFieldBase & {

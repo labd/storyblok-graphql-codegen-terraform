@@ -25,8 +25,8 @@ resource "storyblok_component" "story" {
         "story_a"
       ]
       use_uuid = true
-      minimum  = 2
-      maximum  = 4
+      min_options  = 2
+      max_options  = 4
     }
     union = {
       position     = 2
