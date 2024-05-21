@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.13.2
+
+### Patch Changes
+
+- 2ed11e3: fix min/max option fields
+
 ## 0.13.1
 
 ### Patch Changes
