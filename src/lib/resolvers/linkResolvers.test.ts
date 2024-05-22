@@ -59,6 +59,15 @@ describe('linkResolvers', () => {
     expect(result?.newTab).toBe(false)
   })
 
+  it('ignores an internal url with `links` in context if the link does not exist', () => {
+    const result = resolvers.Article.url(
+      { url: { id: '1', linktype: 'story', anchor: 'test-hash' } },
+      null,
+      { links: [] }
+    )
+    expect(result).toBe(undefined)
+  })
+
   it('can overwrite the newTab to true for an internal url', () => {
     const result = resolvers.Article.url(
       { url: { id: '1', linktype: 'story', target: '_blank' } },
