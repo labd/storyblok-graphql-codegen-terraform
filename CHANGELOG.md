@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.13.3
+
+### Patch Changes
+
+- accbd96: ignore unpublished pages
+
 ## 0.13.2
 
 ### Patch Changes
