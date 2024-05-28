@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.14.0
+
+### Minor Changes
+
+- c91c70d: Resolve links in richtext
+
 ## 0.13.3
 
 ### Patch Changes
