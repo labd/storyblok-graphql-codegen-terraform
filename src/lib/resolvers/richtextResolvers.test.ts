@@ -86,4 +86,96 @@ describe('richtextResolver', () => {
     const result = richtextResolver(prop)(data)
     expect(result).toEqual(expected)
   })
+
+  it('should resolve urls within rich text', () => {
+    const prop = 'content'
+    const data = {
+      component: 'rich_text',
+      content: {
+        type: 'doc',
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: 'This is a text with a ',
+                type: 'text',
+              },
+              {
+                text: 'link',
+                type: 'text',
+                marks: [
+                  {
+                    type: 'link',
+                    attrs: {
+                      // This URL should change:
+                      href: '/wrong/url',
+                      uuid: 'uuid-1234',
+                      target: '_self',
+                      linktype: 'story',
+                    },
+                  },
+                ],
+              },
+              {
+                text: ' to a page',
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      },
+    }
+
+    const context = {
+      links: [
+        {
+          uuid: 'uuid-1234',
+          // This is the correct path, but the prefix should be replaced by the custom url resolver:
+          full_slug: 'de/pages/good/path',
+        },
+      ],
+    }
+
+    const urlResolver = (fullSlug: string) =>
+      '/nl/' + fullSlug.split('pages/')[1]
+
+    const expected = JSON.stringify({
+      type: 'doc',
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            {
+              text: 'This is a text with a ',
+              type: 'text',
+            },
+            {
+              text: 'link',
+              type: 'text',
+              marks: [
+                {
+                  type: 'link',
+                  attrs: {
+                    // This should be the resolved URL:
+                    href: '/nl/good/path',
+                    uuid: 'uuid-1234',
+                    target: '_self',
+                    linktype: 'story',
+                  },
+                },
+              ],
+            },
+            {
+              text: ' to a page',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    })
+
+    const result = richtextResolver(prop, urlResolver)(data, {}, context)
+    expect(result).toEqual(expected)
+  })
 })

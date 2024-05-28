@@ -39,7 +39,7 @@ export const storyblokResolvers = (
     unionArrayFieldResolvers(definitions),
     storyOptionFieldResolvers(definitions),
     unionResolvers(documentNode.definitions),
-    richtextResolvers(definitions),
+    richtextResolvers(definitions, slugResolver),
     linkResolvers(definitions, slugResolver),
     assetResolvers(definitions),
     seoResolvers(definitions),
