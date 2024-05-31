@@ -74,7 +74,7 @@ const resolveUrls = (
   context?: LinksContext
 ) =>
   recursivelyModifyObjects(jsonData, (value) => {
-    if (value.type !== 'link') {
+    if (value?.type !== 'link') {
       return value
     }
 
