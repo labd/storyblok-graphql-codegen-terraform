@@ -59,6 +59,19 @@ describe('linkResolvers', () => {
     expect(result?.newTab).toBe(false)
   })
 
+  it('resolves an internal url without `links` in context', () => {
+    const result = resolvers.Article.url(
+      { url: { id: '1', linktype: 'story', anchor: 'test-hash', story: { full_slug: '/article/test-article-story' } } },
+      null,
+      {}
+    )
+    expect(result?.url).toBe('/article/test-article-story#test-hash')
+    expect(result?.hash).toBe('test-hash')
+    expect(result?.pathname).toBe('/article/test-article-story')
+    expect(result?.type).toBe('internal')
+    expect(result?.newTab).toBe(false)
+  })
+
   it('ignores an internal url with `links` in context if the link does not exist', () => {
     const result = resolvers.Article.url(
       { url: { id: '1', linktype: 'story', anchor: 'test-hash' } },
