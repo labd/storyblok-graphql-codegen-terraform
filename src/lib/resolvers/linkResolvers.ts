@@ -122,6 +122,18 @@ export const toStoryblokLink = (
           (link.anchor ? `#${link.anchor}` : ''),
         pathname: urlResolver(fullSlug, context),
       }
+    } else if (context && link.story?.full_slug) {
+      const fullSlug = link.story.full_slug
+
+      return {
+        type: 'internal',
+        hash: link.anchor,
+        newTab: link.target === '_blank', // internal links are not newTab by default
+        url:
+          urlResolver(fullSlug, context) +
+          (link.anchor ? `#${link.anchor}` : ''),
+        pathname: urlResolver(fullSlug, context),
+      }
     }
 
     // if there is no context, we do it through the cached_url
