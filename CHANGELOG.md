@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.14.3
+
+### Patch Changes
+
+- f5160a7: Fix bug in link resolver for internal links without context.links
+
 ## 0.14.2
 
 ### Patch Changes
