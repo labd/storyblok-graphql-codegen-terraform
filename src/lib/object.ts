@@ -6,14 +6,14 @@ export const recursivelyModifyObjects = (
     return data.map((value: any) =>
       recursivelyModifyObjects(value, objectModifier)
     )
-  } else if (typeof data === 'object') {
+  }
+  if (data && typeof data === 'object') {
     return Object.fromEntries(
       Object.entries(objectModifier(data)).map(([key, value]) => [
         key,
         recursivelyModifyObjects(value, objectModifier),
       ])
     )
-  } else {
-    return data
   }
+  return data
 }
