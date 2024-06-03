@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.14.2
+
+### Patch Changes
+
+- d17b0b2: fix bug in link resolver for nullable fields
+
 ## 0.14.1
 
 ### Patch Changes
