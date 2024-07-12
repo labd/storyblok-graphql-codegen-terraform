@@ -180,4 +180,90 @@ describe('richtextResolver', () => {
     const result = richtextResolver(prop, urlResolver)(data, {}, context)
     expect(result).toEqual(expected)
   })
+
+  it('should apply just the url resolver for rich text, when context is empty', () => {
+    const prop = 'content'
+    const data = {
+      component: 'rich_text',
+      content: {
+        type: 'doc',
+        content: [
+          {
+            type: 'paragraph',
+            content: [
+              {
+                text: 'This is a text with a ',
+                type: 'text',
+              },
+              {
+                text: 'link',
+                type: 'text',
+                marks: [
+                  {
+                    type: 'link',
+                    attrs: {
+                      // This URL should change:
+                      href: '/de/cached/url',
+                      uuid: 'uuid-1234',
+                      target: '_self',
+                      anchor: null,
+                      linktype: 'story',
+                    },
+                  },
+                ],
+              },
+              {
+                text: ' to a page',
+                type: 'text',
+              },
+            ],
+          },
+        ],
+      },
+    }
+
+    const context = {}
+
+    const urlResolver = (fullSlug: string) =>
+      '/nl/' + fullSlug.split(/\/(nl|fr|de|en)\//).pop()
+
+    const expected = JSON.stringify({
+      type: 'doc',
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            {
+              text: 'This is a text with a ',
+              type: 'text',
+            },
+            {
+              text: 'link',
+              type: 'text',
+              marks: [
+                {
+                  type: 'link',
+                  attrs: {
+                    // This should be the resolved URL:
+                    href: '/nl/cached/url',
+                    uuid: 'uuid-1234',
+                    target: '_self',
+                    anchor: null,
+                    linktype: 'story',
+                  },
+                },
+              ],
+            },
+            {
+              text: ' to a page',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    })
+
+    const result = richtextResolver(prop, urlResolver)(data, {}, context)
+    expect(result).toEqual(expected)
+  })
 })

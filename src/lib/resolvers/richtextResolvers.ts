@@ -82,15 +82,11 @@ const resolveUrls = (
       (l) => l.uuid === value.attrs.uuid
     )?.full_slug
 
-    if (!fullSlug) {
-      return value
-    }
-
     return {
       ...value,
       attrs: {
         ...value.attrs,
-        href: urlResolver(fullSlug, context),
+        href: urlResolver(fullSlug ?? value.attrs.href, context),
       },
     }
   })
