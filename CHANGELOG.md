@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.14.4
+
+### Patch Changes
+
+- d31f5d8: fall back to resolving direct link data if link data is not in the context in rich texts
+
 ## 0.14.3
 
 ### Patch Changes
