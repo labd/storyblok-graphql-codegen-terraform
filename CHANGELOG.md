@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 0.15.0
+
+### Minor Changes
+
+- b75a6df: add ct variant SKU
+
 ## 0.14.4
 
 ### Patch Changes
