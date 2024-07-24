@@ -5,6 +5,7 @@ import { assetResolvers } from './lib/resolvers/assetResolvers'
 import { ctCategoryIdResolvers } from './lib/resolvers/ctCategoryIdResolvers'
 import { ctCategoryKeyResolvers } from './lib/resolvers/ctCategoryKeyResolvers'
 import { ctTypeIdResolvers } from './lib/resolvers/ctTypeIdResolvers'
+import { ctVariantSKUResolvers } from './lib/resolvers/ctVariantSKUResolvers'
 import { enumResolvers } from './lib/resolvers/enumResolvers'
 import { idResolvers } from './lib/resolvers/idResolvers'
 import { linkResolvers } from './lib/resolvers/linkResolvers'
@@ -47,6 +48,7 @@ export const storyblokResolvers = (
       ? ctCategoryKeyResolvers(definitions)
       : ctCategoryIdResolvers(definitions),
     ctTypeIdResolvers(definitions),
+    ctVariantSKUResolvers(definitions),
     tableResolvers(definitions),
     enumResolvers(documentNode.definitions),
   ])

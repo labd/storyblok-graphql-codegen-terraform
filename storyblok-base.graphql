@@ -134,6 +134,7 @@ enum StoryblokLinkType {
 enum CtType {
   product
   category
+  variant
 }
 
 # Object directives

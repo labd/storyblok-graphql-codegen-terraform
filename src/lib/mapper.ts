@@ -298,6 +298,44 @@ const toArrayComponentField = (
 
   switch (typeName(type)) {
     case 'String': {
+      const ctType = findStoryblokFieldValue<EnumValueNode>(
+        field,
+        'ctType'
+      )?.value
+
+      if (ctType === 'variant') {
+        if (!ctConfig) {
+          throw new Error(
+            `Commercetools config is required for type ${typeName(type)}`
+          )
+        }
+
+        const max = findStoryblokFieldValue<IntValueNode>(
+          field,
+          'max'
+        )?.value.toString()
+
+        return {
+          type: 'custom',
+          field_type: 'sb-commercetools',
+          options: list(
+            ...[
+              ...ctConnectionOptions(ctConfig),
+              max
+                ? map({
+                    name: 'limit',
+                    value: max,
+                  })
+                : undefined,
+              map({
+                name: 'selectOnly',
+                value: 'product',
+              }),
+            ].filter(isValue)
+          ),
+        }
+      }
+
       const datasource = findStoryblokFieldValue<StringValueNode>(
         field,
         'datasource'
@@ -511,16 +549,40 @@ const toComponentField = (
         'ctType'
       )?.value
 
-      if (ctType === 'category') {
+      if (ctType) {
         if (!ctConfig) {
           throw new Error(
             `Commercetools config is required for ${field.name.value}`
           )
         }
-        return {
-          type: 'custom',
-          field_type: 'ct-category',
-          options: list(...[...ctCategoryOptions(ctConfig)].filter(isValue)),
+
+        switch (ctType) {
+          case 'category':
+            return {
+              type: 'custom',
+              field_type: 'ct-category',
+              options: list(
+                ...[...ctCategoryOptions(ctConfig)].filter(isValue)
+              ),
+            }
+          case 'variant':
+            return {
+              type: 'custom',
+              field_type: 'sb-commercetools',
+              options: list(
+                ...[
+                  ...ctConnectionOptions(ctConfig),
+                  map({
+                    name: 'limit',
+                    value: '1',
+                  }),
+                  map({
+                    name: 'selectOnly',
+                    value: 'product',
+                  }),
+                ].filter(isValue)
+              ),
+            }
         }
       }
 

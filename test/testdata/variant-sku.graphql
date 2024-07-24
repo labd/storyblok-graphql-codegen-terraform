@@ -1,0 +1,4 @@
+type A @storyblok {
+  variantSku: String @storyblokField(ctType: variant)
+  variantSkus: [String] @storyblokField(ctType: variant)
+}
