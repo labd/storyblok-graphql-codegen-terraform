@@ -1,5 +1,11 @@
 # @labdigital/storyblok-graphql-codegen-terraform
 
+## 1.0.0
+
+### Major Changes
+
+- 3af082e: Update dependencies, min node to 20
+
 ## 0.15.0
 
 ### Minor Changes
