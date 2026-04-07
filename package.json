@@ -3,6 +3,10 @@
   "author": "Lab Digital",
   "private": false,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/labd/storyblok-graphql-codegen-terraform.git"
+  },
   "module": "dist/index.mjs",
   "files": [
     "dist",
