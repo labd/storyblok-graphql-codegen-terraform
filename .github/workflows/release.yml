@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ['20.x', '22.x', '24.x']
+        node: ["20.x", "22.x", "24.x"]
         os: [ubuntu-latest]
 
     steps:
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: ${{ matrix.node }}
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
@@ -46,34 +46,32 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    environment: 'release'
     needs: build
-    permissions:
-      id-token: write
-      contents: write
-      pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: labd/gh-actions-typescript/pnpm-install@main
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.3.0
+        name: Install pnpm
 
-      - name: Run build
-        run: pnpm build
+      - name: Install node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: "pnpm"
 
-      - name: Upgrade npm for trusted publishing
-        run: npm i -g npm@^11.6.4
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Create and publish versions
-        uses: changesets/action@v1
+        uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # v1.7.0
         with:
-          title: 'Release new version'
-          commit: 'update version'
+          title: "Release new version"
+          commit: "update version"
           publish: pnpm publish:ci
-          version: pnpm publish:version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
