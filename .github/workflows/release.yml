@@ -59,7 +59,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: labd/gh-actions-typescript/pnpm-install@907792797621ac3681bdd0ff6b324e49dc9b37c8 # latest main on 2026-04-07
+        uses: labd/gh-actions-typescript/pnpm-install@83f1d08c6553972e1222006d2dc97d203596eeeb # latest main on 2026-04-07
         with:
           node-version: '24'
 
