@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ['20.x', '22.x', '24.x']
+        node: ['22.x', '24.x', '26.x']
         os: [ubuntu-latest]
 
     steps:
@@ -59,7 +59,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: labd/gh-actions-typescript/pnpm-install@907792797621ac3681bdd0ff6b324e49dc9b37c8 # latest main on 2026-04-07
+        uses: labd/gh-actions-typescript/pnpm-install@a43f95146e7e81612083238af16f503de7f614a8 # v1.0.3
         with:
           node-version: '24'
 
